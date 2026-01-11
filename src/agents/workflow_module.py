@@ -11,18 +11,13 @@ import logging
 from sklearn.cluster import KMeans
 from sentence_transformers import SentenceTransformer
 
-
 from src.config.settings import settings
 from src.assets.prompts import system_prompt__effect_extraction,system_prompt__cluster_naming,system_prompt__KG_building
 
 # pd.set_option('display.max_rows', None)
 # pd.set_option('display.max_columns', None)
 
-
-
-RESULT_NAME = settings.RESULT_NAME
 LOG_FILE = os.path.join(settings.LOG_DIR, "app.log")
-
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,                           # logging level
@@ -33,10 +28,9 @@ logging.basicConfig(
     ]
 )
 
-
 llm = init_chat_model(model=settings.MODEL_NAME, model_provider=settings.MODEL_PROVIDER, temperature=settings.TEMPERATURE,top_p=settings.TOP_P)
 
-_input_path=r'C:\Users\lwjen\PycharmProjects\Proj001\SelfRepo001\misc_code\agent\project\KG-QuantBuilder\input\raw_data'
+RESULT_NAME = settings.RESULT_NAME
 INPUT_FILENAME = settings.INPUT_NAME
 TEXT_COL = settings.TEXT_COL
 FREQ_UB = int(settings.FREQ_UB)
@@ -45,7 +39,8 @@ FREQ_UB = int(settings.FREQ_UB)
 
 def reader_module():
     logging.info(f"Reader Module commencing ...")
-    df = pd.read_excel(INPUT_FILENAME).sample(100,random_state=1)
+    # df = pd.read_excel(INPUT_FILENAME).sample(100, random_state=1)
+    df = pd.read_excel(INPUT_FILENAME)
     df[TEXT_COL] = df[TEXT_COL].astype('str')
     df[TEXT_COL] = df[TEXT_COL].apply(lambda x:x[:500])
     l_data = df[TEXT_COL].values.tolist()
