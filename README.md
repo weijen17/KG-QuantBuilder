@@ -92,6 +92,11 @@ docker-compose up --build
        ▼
 ┌─────────────┐
 │ KG Framework│──► Generate KG hierarchical labeling framework based on clustering result
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│ Evaluation  │──► Evaluate KG framework on coverage
 └─────────────┘
 ```
 
@@ -119,3 +124,4 @@ project/
 ## Pending
 
 1. Use agglomerative clustering, and uses LLM to merge similar cluster repetitively before generating final result.
+2. Evaluation Framework
