@@ -1,0 +1,2 @@
+For report level evaluation, the 1st element is the score, and 2nd element is the justification.
+For subtask level evaluation, the first 3 elements are business question, subtask index and subtask description. 4th element is the score, and 5th element is the justification.
